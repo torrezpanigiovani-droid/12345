@@ -1,0 +1,1 @@
+Base de datos del panel Mundial 2026. Para instalar, importa db_mundial2026.sql en phpMyAdmin. La importación reinicia las tablas de este proyecto y vuelve a cargar los datos de demostración.

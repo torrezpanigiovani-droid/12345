@@ -1,0 +1,23 @@
+INSTALACIÓN EN TERMUX (DENTRO DE UN PROYECTO LARAVEL)
+
+1. Abre Termux y entra a la carpeta de tu proyecto Laravel:
+   cd /ruta/de/tu/proyecto
+
+2. Descomprime este ZIP y copia su contenido dentro de tu proyecto,
+   conservando las carpetas app, database, resources y routes.
+
+3. Configura la base de datos en .env.
+
+4. Ejecuta:
+   php artisan migrate
+
+5. Inicia:
+   php artisan serve --host=0.0.0.0
+
+6. Abre en el navegador la dirección que indique Laravel y agrega:
+   /productos
+
+IMPORTANTE:
+Este ZIP es el módulo CRUD de la actividad Laravel + jQuery. Necesitas
+tener Laravel instalado previamente. No reemplaces todo tu routes/web.php
+si ya contiene otras rutas: copia únicamente las rutas de productos.

@@ -1,0 +1,4 @@
+<?php 
+//eliminar un usuario
+
+?>

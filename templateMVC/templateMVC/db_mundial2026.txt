@@ -1,0 +1,52 @@
+create database if not exists db_mundial2026;
+use db_mundial2026;
+
+-- Este archivo queda corregido para MySQL.
+-- Correcciones principales del archivo original:
+-- 1) equipos.idEquipo (no idEquipos).
+-- 2) sedes.idSede (no idSedes).
+-- 3) jugadores.foto para almacenar la ruta de la imagen.
+-- 4) Las relaciones usan InnoDB y claves foráneas reales.
+-- 5) Se agregó la columna foto a jugadores.
+
+CREATE TABLE IF NOT EXISTS sedes(
+    idSede INT AUTO_INCREMENT PRIMARY KEY,
+    sede VARCHAR(100) NOT NULL,
+    ciudad VARCHAR(100) NOT NULL,
+    pais VARCHAR(50) NOT NULL,
+    capacidad INT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS equipos(
+    idEquipo INT AUTO_INCREMENT PRIMARY KEY,
+    equipo VARCHAR(50) NOT NULL,
+    grupo CHAR(1),
+    confederacion VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS jugadores(
+    idJugador INT AUTO_INCREMENT PRIMARY KEY,
+    jugador VARCHAR(100) NOT NULL,
+    posicion VARCHAR(50) NOT NULL,
+    dorsal INT,
+    edad INT,
+    club VARCHAR(50) NOT NULL,
+    equipo_id INT NOT NULL,
+    foto VARCHAR(255),
+    FOREIGN KEY (equipo_id) REFERENCES equipos(idEquipo) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS partidos (
+    idPartido INT AUTO_INCREMENT PRIMARY KEY,
+    fase VARCHAR(50) NOT NULL DEFAULT 'Fase de Grupos',
+    fecha DATETIME,
+    sede_id INT,
+    equipo_local_id INT NOT NULL,
+    equipo_visitante_id INT NOT NULL,
+    goles_local INT DEFAULT 0,
+    goles_visitante INT DEFAULT 0,
+    estado VARCHAR(20) DEFAULT 'Programado',
+    FOREIGN KEY (sede_id) REFERENCES sedes(idSede) ON DELETE SET NULL ON UPDATE CASCADE,
+    FOREIGN KEY (equipo_local_id) REFERENCES equipos(idEquipo) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (equipo_visitante_id) REFERENCES equipos(idEquipo) ON DELETE CASCADE ON UPDATE CASCADE
+);
